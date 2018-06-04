@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="language" content="es" />
+	<meta name="author" content="Farmacid S.A." />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{request.contextPath}/images/favicon.png" />
+
+	<link href="#{request.contextPath}/css/normalize.css" rel="stylesheet"
+		type="text/css" />
+	<link href="#{request.contextPath}/css/general.css" rel="stylesheet"
+		type="text/css" />
+
+	<f:event type="preRenderView"
+		listener="#{plantillaController.verificarSesion}"></f:event>
+
+</h:head>
+<h:body>
+	<ui:include src="sessionTimeOut.xhtml" />
+	<!-- <p:growl id="msj" autoUpdate="true" showDetail="true" /> -->
+	<p:layout fullPage="true" resizeTitle="resize"
+		style="background:#d3d2d2;">
+
+
+		<p:layoutUnit position="north" id="west" resizable="false"
+			header="MENÚ" collapsible="true">
+			<ui:include src="menu.xhtml" />
+		</p:layoutUnit>
+
+		<p:layoutUnit styleClass="layoutUnitCenter" position="center">
+			<f:facet name="header">
+				<ui:insert name="tituloPagina" />
+			</f:facet>
+
+			<h:form id="mainForm">
+				<ui:insert name="content" />
+			</h:form>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="south" id="south" resizable="false"
+			collapsible="false" size="30" styleClass="noScrolllayoutUnit">
+			<ui:include src="footer.xhtml" />
+		</p:layoutUnit>
+
+	</p:layout>
+	<center>
+		<ui:insert name="dialogos"></ui:insert>
+	</center>
+</h:body>
+
+</html>

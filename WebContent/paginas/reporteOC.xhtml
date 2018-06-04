@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/general_template.xhtml">
+	<ui:define name="tituloPagina">Reporteador OC</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<p:ajaxStatus onstart="PF('statusDialog').show();"
+			onsuccess="PF('statusDialog').hide();" />
+		<h:form id="frmPrincipal" style="width:1200px">
+			<p:growl id="msj" autoUpdate="true" showDetail="true" />
+			<p:panel visible="true" style="background-color: #FAFAFA;"
+				id="pnlPrincipal">
+
+
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+					<!-- columna 1 -->
+					<p:outputLabel for="cias" value="Empresa:" />
+					<p:selectOneRadio id="cias" value="#{reporteBeanOC.ciaSelected}">
+						<f:selectItem itemLabel="Farmacid" itemValue="001" />
+						<f:selectItem itemLabel="Pharmabrand" itemValue="002" />
+						<f:selectItem itemLabel="Blenastor" itemValue="005" />
+					</p:selectOneRadio>
+					<!-- columna 2 -->
+					<p:outputLabel for="ssn" value="SSN-OC:" />
+					<p:inputMask id="ssn" value="#{reporteBeanOC.codDoc}"
+						mask="999999999999999" />
+					<!-- columna 3 -->
+					<p:commandButton value="Generar PDF-OC" id="ajax"
+						style="width:150px"
+						actionListener="#{reporteBeanOC.generarDocumento}"
+						styleClass="ui-priority-primary" />
+
+				</h:panelGrid>
+
+
+
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+<!--  -->
